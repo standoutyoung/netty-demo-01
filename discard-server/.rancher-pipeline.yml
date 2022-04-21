@@ -1,0 +1,28 @@
+env:
+  nexus-repos:
+    ip: 192.168.31.140
+stages:
+- name: compile
+  steps:
+  - runScriptConfig:
+      image: maven:3.6.0-jdk-8-alpine
+      shellScript: |-
+        mkdir -p /root/.m2 && mv settings.xml /root/.m2/
+        mvn clean install
+- name: push-image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: discard-server:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: 192.168.31.140:8083
+    env:
+      PLUGIN_INSECURE: "true"
+      PLUGIN_MIRROR: http://192.168.31.140:8083
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+timeout: 60
+notification: {}
