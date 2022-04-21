@@ -47,13 +47,13 @@
     <repository>
       <id>maven-public</id>	<!--与setting.xml中server节点的id相对应-->
       <name>public</name>	<!--随意-->
-      <url>http://localhost:18081/repository/maven-public/</url>
+      <url>http://192.168.31.140:18081/repository/maven-public/</url>
     </repository>
     <!-- 快照库 -->
     <snapshotRepository>
       <id>maven-snapshots</id>	<!--与setting.xml中server节点的id相对应-->
       <name>snapshots</name>	<!--随意-->
-      <url>http://localhost:18081/repository/maven-snapshots/</url>
+      <url>http://192.168.31.140:18081/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
