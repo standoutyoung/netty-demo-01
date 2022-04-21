@@ -6,5 +6,15 @@ stages:
       shellScript: |-
         mkdir -p /root/.m2 && mv settings.xml /root/.m2/
         mvn clean install
+- name: push-image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: discard-server:${CICD_EXECUTION_SEQUENCE}
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
 timeout: 60
 notification: {}
