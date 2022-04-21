@@ -13,7 +13,7 @@ stages:
       buildContext: .
       tag: discard-server:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
-      registry: http://192.168.31.140:18081
+      registry: http://192.168.31.140:8083
 - name: deploy
   steps:
   - applyYamlConfig:
